@@ -4,6 +4,7 @@ from kivy.uix.screenmanager import ScreenManager
 from kivy.lang import Builder
 from login import LoginScreen, LoginProvider
 from login import LoginScreen, LoginProvider
+import login
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
 from hoverwidget import HoverWidget

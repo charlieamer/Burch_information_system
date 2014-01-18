@@ -1,3 +1,5 @@
+#: import Animation kivy.animation.Animation
+#: import theme theme
 <HoverWidget>:
 
 <Blinking>:
@@ -17,10 +19,12 @@
 <ProgressButton@TLabel+HoverWidget>:
 	value: 0.0
 	max: 100.0
+	waitOpacity: 1.0
+	animatingWaitOpacity: False
 	canvas.before:
 		#fill
 		Color:
-			rgba: [0.7,0.7,0.9,opacity] if self.value==-1 else [.90, .90, .90, 1] if not self.hover else [.85, .85, .85, 1]
+			rgba: [0.7,0.7,0.9,self.waitOpacity] if self.value==-1 else [.90, .90, .90, 1] if not self.hover else [.80, .80, .85, 1]
 		Rectangle:
 			size: self.size
 			pos: self.pos
@@ -32,4 +36,6 @@
 			size: (int(float(self.size[0])*(max(float(self.value),0.0)/float(self.max))),self.size[1])
 		Color:
 			rgba:[0.8,0,8,0.9,1] if self.value == -1.0 else [0,0,0,0]
+	on_touch_down:
+		theme.animateWaiting(self)
 	

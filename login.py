@@ -12,15 +12,22 @@ import os
 
 class LoginScreen(Screen):
 	def tryLogin(self):
+		self.ids.login.text = "Logging in"
 		self.ids.login.max = 69000
 		self.ids.login.value = -1
-		LoginProvider.isSISLoginInfoValid(None, self.gotResult, self.gotError, self.updateProgress)
+		LoginProvider.isSISLoginInfoValid(None, self.gotSISResult, self.gotError, self.updateProgress)
 		self.prag = 0.0
 	def updateProgress(self, thread, a, b):
-		print a
+		if b != -1:
+			self.ids.login.max = b
 		self.ids.login.value = a
-	def gotResult(self, valid):
-		print valid
+	def gotSISResult(self, valid):
+		self.ids.login.value = -1
+		print "SIS Valid:",valid
+		LoginProvider.isSISLoginInfoValid(None, self.gotLMSResult, self.gotError, self.updateProgress)
+	def gotLMSResult(self, valid):
+		print "LMS Valid:",valid
+		self.ids.login.text = "Login"
 	def gotError(self, e):
 		print e
 	
@@ -75,6 +82,9 @@ class _LoginProvider:
 		def isSISLoginInfoValid(self, LoginInfo, resultFunction, errorFunction = None, progressFunction = None):
 			self.resultFunction = resultFunction
 			req = UrlRequest("http://lms.ibu.edu.ba/", on_success = self.isValid, on_error = errorFunction, on_progress = progressFunction )
+		def isLMSLoginInfoValid(self, LoginInfo, resultFunction, errorFunction = None, progressFunction = None):
+			self.resultFunction = resultFunction
+			req = UrlRequest("https://my.ibu.edu.ba/", on_success = self.isValid, on_error = errorFunction, on_progress = progressFunction )
 			
 	instance = None
 	def __init__(self):
