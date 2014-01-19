@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{48d5ab82-602d-4de9-82ff-2bb0f9dc303d}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>main.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <InterpreterId>{2af0f10d-7135-4994-9156-5d01c9c11b7e}</InterpreterId>
+    <InterpreterVersion>2.7</InterpreterVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <IsWindowsApplication>False</IsWindowsApplication>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <ItemGroup>
+    <Compile Include="common.py" />
+    <Compile Include="hoverwidget.py" />
+    <Compile Include="LMS.py" />
+    <Compile Include="login.py" />
+    <Compile Include="main.py" />
+    <Compile Include="mechanize\_auth.py" />
+    <Compile Include="mechanize\_beautifulsoup.py" />
+    <Compile Include="mechanize\_clientcookie.py" />
+    <Compile Include="mechanize\_debug.py" />
+    <Compile Include="mechanize\_firefox3cookiejar.py" />
+    <Compile Include="mechanize\_form.py" />
+    <Compile Include="mechanize\_gzip.py" />
+    <Compile Include="mechanize\_headersutil.py" />
+    <Compile Include="mechanize\_html.py" />
+    <Compile Include="mechanize\_http.py" />
+    <Compile Include="mechanize\_lwpcookiejar.py" />
+    <Compile Include="mechanize\_markupbase.py" />
+    <Compile Include="mechanize\_mechanize.py" />
+    <Compile Include="mechanize\_mozillacookiejar.py" />
+    <Compile Include="mechanize\_msiecookiejar.py" />
+    <Compile Include="mechanize\_opener.py" />
+    <Compile Include="mechanize\_pullparser.py" />
+    <Compile Include="mechanize\_request.py" />
+    <Compile Include="mechanize\_response.py" />
+    <Compile Include="mechanize\_rfc3986.py" />
+    <Compile Include="mechanize\_sgmllib_copy.py" />
+    <Compile Include="mechanize\_sockettimeout.py" />
+    <Compile Include="mechanize\_testcase.py" />
+    <Compile Include="mechanize\_urllib2.py" />
+    <Compile Include="mechanize\_urllib2_fork.py" />
+    <Compile Include="mechanize\_useragent.py" />
+    <Compile Include="mechanize\_util.py" />
+    <Compile Include="mechanize\_version.py" />
+    <Compile Include="mechanize\__init__.py" />
+    <Compile Include="SIS.py" />
+    <Compile Include="theme.py" />
+    <Content Include="data\IBU_logo.png" />
+    <Content Include="data\ibu_logo_empty.png" />
+    <Content Include="gui.kv" />
+    <Content Include="mechanize\_auth.pyc" />
+    <Content Include="mechanize\_beautifulsoup.pyc" />
+    <Content Include="mechanize\_clientcookie.pyc" />
+    <Content Include="mechanize\_debug.pyc" />
+    <Content Include="mechanize\_firefox3cookiejar.pyc" />
+    <Content Include="mechanize\_form.pyc" />
+    <Content Include="mechanize\_gzip.pyc" />
+    <Content Include="mechanize\_headersutil.pyc" />
+    <Content Include="mechanize\_html.pyc" />
+    <Content Include="mechanize\_http.pyc" />
+    <Content Include="mechanize\_lwpcookiejar.pyc" />
+    <Content Include="mechanize\_mechanize.pyc" />
+    <Content Include="mechanize\_mozillacookiejar.pyc" />
+    <Content Include="mechanize\_msiecookiejar.pyc" />
+    <Content Include="mechanize\_opener.pyc" />
+    <Content Include="mechanize\_request.pyc" />
+    <Content Include="mechanize\_response.pyc" />
+    <Content Include="mechanize\_rfc3986.pyc" />
+    <Content Include="mechanize\_sgmllib_copy.pyc" />
+    <Content Include="mechanize\_sockettimeout.pyc" />
+    <Content Include="mechanize\_urllib2.pyc" />
+    <Content Include="mechanize\_urllib2_fork.pyc" />
+    <Content Include="mechanize\_useragent.pyc" />
+    <Content Include="mechanize\_util.pyc" />
+    <Content Include="mechanize\_version.pyc" />
+    <Content Include="mechanize\__init__.pyc" />
+    <Content Include="theme.kv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="data" />
+    <Folder Include="mechanize\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="{2af0f10d-7135-4994-9156-5d01c9c11b7e}\2.7" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>

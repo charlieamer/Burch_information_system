@@ -5,37 +5,40 @@
 <Blinking>:
 
 <TLabel@Label>:
-	color: [.4,.4,.4,1]
+    color: [.4,.4,.4,1]
 
 <TBoxLayout@BoxLayout>:
-	canvas:
-		Color:
-			rgba: 0.97, 0.97, 1.0, 1
-		Rectangle:
-			size: [self.size[0]+30, self.size[1]+20]
-			pos: [self.pos[0]-15, self.pos[1]-10]
-	
+    canvas:
+        Color:
+            rgba: 0.97, 0.97, 1.0, 1
+        Rectangle:
+            size: [self.size[0]+30, self.size[1]+20]
+            pos: [self.pos[0]-15, self.pos[1]-10]
+    
 
 <ProgressButton@TLabel+HoverWidget>:
-	value: 0.0
-	max: 100.0
-	waitOpacity: 1.0
-	animatingWaitOpacity: False
-	canvas.before:
-		#fill
-		Color:
-			rgba: [0.7,0.7,0.9,self.waitOpacity] if self.value==-1 else [.90, .90, .90, 1] if not self.hover else [.80, .80, .85, 1]
-		Rectangle:
-			size: self.size
-			pos: self.pos
-		#progress
-		Color:
-			rgba: 0,0,0,.1
-		Rectangle:
-			pos: self.pos
-			size: (int(float(self.size[0])*(max(float(self.value),0.0)/float(self.max))),self.size[1])
-		Color:
-			rgba:[0.8,0,8,0.9,1] if self.value == -1.0 else [0,0,0,0]
-	on_touch_down:
-		theme.animateWaiting(self)
-	
+    value: 0.0
+    _value: 0.0
+    max: 100.0
+    blinkOpacity: 1.0
+	working: False
+    animatingWaitOpacity: False
+	progressOpacity: .1
+    canvas.before:
+        #fill
+        Color:
+            rgba: [0.7,0.7,0.9,self.blinkOpacity] if self.working else [.90, .90, .90, 1] if not self.hover else [.80, .80, .85, 1]
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        #progress
+        Color:
+            rgba: 0,0,0,self.progressOpacity
+        Rectangle:
+            pos: self.pos
+            size: (int(float(self.size[0])*(max(float(self._value),0.0)/float(self.max))),self.size[1])
+    on_working:
+        theme.animateWorking(self)
+	on_value:
+		theme.animateProgress(self)
+    

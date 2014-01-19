@@ -2,103 +2,128 @@
 #:import kivy.graphics kivy.graphics
 
 <LoginScreen>:
-	AnchorLayout:
-		anchor_y: 'center'
-		anchor_x: 'center'
-		TBoxLayout:
-			size_hint: None, None
-			width: 340
-			height: 550
-			orientation: "vertical"
-			###############################
-			### Logo and title
-			###############################
-			TLabel:
-				size_hint: 1.0, 0.1
-				height: 30
-				text: "Burch student system"
-				font_size: 33
-				bold: True
-			BoxLayout:
-				height: 150
-				size_hint: 1, 0.2
-				Image:
-					size_hint: 0.3, 1
-					source: "data/IBU_logo.png"
-				AnchorLayout:
-					anchor_x: 'center'
-					anchor_y: 'center'
-					size_hint: 0.7, 1
-					TLabel:
-						text: "Please enter your Learning Management System (LMS) and/or Student Information System (SIS) username and password"
-						text_size: self.size
-						size_hint: 0.9, None
-				
-			###############################
-			### Input
-			###############################
-			GridLayout:
-				size_hint: 1, 0.45
-				height: 300
-				anchor: ('center', 'center')
-				cols: 2
-				###########################
-				### LMS
-				###########################
-				BoxLayout:
-				BoxLayout:
-					BoxLayout:
-						size_hint: 0.3, 1.0
-					TLabel:
-						size_hint: 0.3, 1.0
-						text: "Use LMS:"
-					CheckBox:
-						size_hint: 0.1, 1.0
-						active: True
-						on_active: LMS_username.disabled = LMS_password.disabled = not self.active
-				TLabel:
-					text: "LMS Username:"
-				TextInput:
-					id: LMS_username
-				TLabel:
-					text: "LMS Password:"
-				TextInput:
-					id: LMS_password
-					password: True
-				BoxLayout:
-				BoxLayout:
-				###########################
-				### SIS
-				###########################
-				BoxLayout:
-				BoxLayout:
-					BoxLayout:
-						size_hint: 0.3, 1.0
-					TLabel:
-						size_hint: 0.3, 1.0
-						text: "Use SIS:"
-					CheckBox:
-						size_hint: 0.1, 1.0
-						active: True
-						on_active: SIS_username.disabled = SIS_password.disabled = not self.active
-				TLabel:
-					text: "SIS Username:"
-				TextInput:
-					id: SIS_username
-				TLabel:
-					text: "SIS Password:"
-				TextInput:
-					id: SIS_password
-					password: True
-				BoxLayout:
-				BoxLayout:
-				###########################
-				### LOGIN
-				###########################
-				BoxLayout:
-				BoxLayout:
-					BoxLayout:
-					ProgressButton:
-						id: login
-						text: "Login"
-						on_touch_down: root.tryLogin() if self.hover else None
+    AnchorLayout:
+        anchor_y: 'center'
+        anchor_x: 'center'
+        TBoxLayout:
+            size_hint: None, None
+            width: 340
+            height: 550
+            orientation: "vertical"
+            ###############################
+            ### Logo and title
+            ###############################
+            TLabel:
+                size_hint: 1.0, 0.1
+                height: 30
+                text: "Burch student system"
+                font_size: 33
+                bold: True
+            BoxLayout:
+                height: 150
+                size_hint: 1, 0.2
+                Image:
+                    size_hint: 0.3, 1
+                    source: "data/IBU_logo.png"
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    size_hint: 0.7, 1
+                    TLabel:
+                        text: "Please enter your Learning Management System (LMS) and/or Student Information System (SIS) username and password"
+                        text_size: self.size
+                        size_hint: 0.9, None
+						halign: 'right'
+                
+            ###############################
+            ### Input
+            ###############################
+            GridLayout:
+                size_hint: 1, 0.45
+                height: 300
+                anchor: ('center', 'center')
+                cols: 2
+                ###########################
+                ### LMS
+                ###########################
+                BoxLayout:
+                BoxLayout:
+					Label:
+						color: [1,.2,.2,1]
+						id: LMS_error
+                        text_size: self.size
+                BoxLayout:
+                BoxLayout:
+                    BoxLayout:
+                        size_hint: 0.3, 1.0
+                    TLabel:
+                        size_hint: 0.3, 1.0
+                        text: "Use LMS:"
+                    CheckBox:
+                        size_hint: 0.1, 1.0
+                        active: True
+                        on_active: LMS_username.disabled = LMS_password.disabled = not self.active
+						id: LMS_use
+                TLabel:
+					text_size: (self.width, None)
+					halign: 'right'
+                    text: "LMS Username: "
+                    size_hint: None, 1.0
+					width: 120
+                TextInput:
+					size_hint: None, 1.0
+					width: self.parent.width-120
+                    id: LMS_username
+                TLabel:
+					text_size: (self.width, None)
+					halign: 'right'
+                    text: "LMS Password: "
+                TextInput:
+                    id: LMS_password
+                    password: True
+                ###########################
+                ### SIS
+                ###########################
+                BoxLayout:
+                BoxLayout:
+					Label:
+						color: [1,.2,.2,1]
+						id: SIS_error
+                        text_size: self.size
+                BoxLayout:
+                BoxLayout:
+                    BoxLayout:
+                        size_hint: 0.3, 1.0
+                    TLabel:
+                        size_hint: 0.3, 1.0
+                        text: "Use SIS:"
+                    CheckBox:
+                        size_hint: 0.1, 1.0
+                        active: True
+                        on_active: SIS_username.disabled = SIS_password.disabled = not self.active
+						id: SIS_use
+                TLabel:
+					text_size: (self.width, None)
+					halign: 'right'
+                    text: "SIS Username: "
+                TextInput:
+                    id: SIS_username
+                TLabel:
+					text_size: (self.width, None)
+					halign: 'right'
+                    text: "SIS Password: "
+                TextInput:
+                    id: SIS_password
+                    password: True
+                BoxLayout:
+                BoxLayout:
+                ###########################
+                ### LOGIN
+                ###########################
+                BoxLayout:
+                BoxLayout:
+                    BoxLayout:
+                    ProgressButton:
+                        id: login
+                        text: "Login"
+                        on_touch_down: root.tryLogin() if self.hover else None
