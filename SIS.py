@@ -9,10 +9,25 @@ from common import BaseBrowser
 
 cookiejar = None
 
+class SISMessage:
+    msgFrom = None
+    msgTitle = None
+    msgDate = None
+    msgContent = None
+    msgId = None
+
+class SISData:
+    pictureUrl = None
+    nameSurname = None
+    department = None
+    eMail = None
+    messages = None
+    courses = None
+
 class SISBrowser(BaseBrowser):
     runFunction = None
-    def __init__(self, resultFunction, errorFunction, updateFunction = None):
-        BaseBrowser.__init__(self, resultFunction, errorFunction, updateFunction)
+    def __init__(self, resultFunction, errorFunction, updateFunction = None, maxUpdatesFunction = None):
+        BaseBrowser.__init__(self, resultFunction, errorFunction, updateFunction, maxUpdatesFunction)
         global cookiejar
         if cookiejar is not None:
             self.cookies = cookiejar

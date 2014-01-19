@@ -11,8 +11,8 @@ cookiejar = None
 
 class LMSBrowser(BaseBrowser):
     runFunction = None
-    def __init__(self, resultFunction, errorFunction, updateFunction = None):
-        BaseBrowser.__init__(self, resultFunction, errorFunction, updateFunction)
+    def __init__(self, resultFunction, errorFunction, updateFunction = None, maxUpdatesFunction = None):
+        BaseBrowser.__init__(self, resultFunction, errorFunction, updateFunction, maxUpdatesFunction)
         global cookiejar
         if cookiejar is not None:
             self.cookies = cookiejar

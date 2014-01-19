@@ -12,5 +12,14 @@ def animateWorking(widget):
 def animateProgress(widget):
     Animation(_value = widget.value, duration = .3).start(widget)
 
+def processTextInput(widget):
+    if widget.text is not "":
+        if widget.text[-1] == '\t':
+            widget.text = widget.text[0:len(widget.text)-1]
+            widget.next.focus = True
+        if widget.text[-1] == '\n':
+            widget.text = widget.text[0:len(widget.text)-1]
+            widget.enter()
+
 #def animateWorking(widget):
 #    Animation(progressOpacity = (.1 if widget.working else .0)).start(widget)

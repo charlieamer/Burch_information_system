@@ -23,6 +23,7 @@
     <Compile Include="LMS.py" />
     <Compile Include="login.py" />
     <Compile Include="main.py" />
+    <Compile Include="MainScreen.py" />
     <Compile Include="mechanize\_auth.py" />
     <Compile Include="mechanize\_beautifulsoup.py" />
     <Compile Include="mechanize\_clientcookie.py" />

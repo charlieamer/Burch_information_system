@@ -1,5 +1,7 @@
 #:kivy 1.8.0
 #:import kivy.graphics kivy.graphics
+#:import MainScreenManager common.MainScreenManager
+#:import LoginScreen login.LoginScreen
 
 <LoginScreen>:
     AnchorLayout:
@@ -74,6 +76,10 @@
 					size_hint: None, 1.0
 					width: self.parent.width-120
                     id: LMS_username
+					next: LMS_password
+					on_text: theme.processTextInput(self)
+					focus: True
+					enter: root.tryLogin
                 TLabel:
 					text_size: (self.width, None)
 					halign: 'right'
@@ -81,6 +87,9 @@
                 TextInput:
                     id: LMS_password
                     password: True
+					next: SIS_username
+					on_text: theme.processTextInput(self)
+					enter: root.tryLogin
                 ###########################
                 ### SIS
                 ###########################
@@ -108,6 +117,9 @@
                     text: "SIS Username: "
                 TextInput:
                     id: SIS_username
+					next: SIS_password
+					on_text: theme.processTextInput(self)
+					enter: root.tryLogin
                 TLabel:
 					text_size: (self.width, None)
 					halign: 'right'
@@ -115,6 +127,9 @@
                 TextInput:
                     id: SIS_password
                     password: True
+					next: login
+					on_text: theme.processTextInput(self)
+					enter: root.tryLogin
                 BoxLayout:
                 BoxLayout:
                 ###########################
@@ -127,3 +142,11 @@
                         id: login
                         text: "Login"
                         on_touch_down: root.tryLogin() if self.hover else None
+
+<MainScreen>:
+	id: MainScreen
+	Button:
+		text: "it works yay"
+		on_touch_down:
+			MainScreenManager.switch_to(LoginScreen())
+			MainScreenManager.remove_widget(MainScreen)

@@ -3,6 +3,11 @@ from time import sleep
 from kivy.clock import Clock
 from functools import partial
 import mechanize
+from requests.exceptions import HTTPError
+import sys
+from kivy.uix.screenmanager import ScreenManager
+
+MainScreenManager = ScreenManager()
 
 class LoginInfo:
     username = None
@@ -17,11 +22,12 @@ class LoginInfo:
 
 class BaseBrowser(Thread):
     runFunction = None
-    def __init__(self, resultFunction, errorFunction, updateFunction):
+    def __init__(self, resultFunction, errorFunction, updateFunction, maxUpdatesFunction):
         Thread.__init__(self)
         self.errorFunction = errorFunction
         self.updateFunction = updateFunction
         self.resultFunction = resultFunction
+        self.maxUpdatesFunction = maxUpdatesFunction
         self.browser = mechanize.Browser()
         self.browser.set_handle_robots(False)
         self.cookies = self.browser._ua_handlers['_cookies'].cookiejar
@@ -32,11 +38,15 @@ class BaseBrowser(Thread):
             sleep(.1)
         try:
             self.runFunction()
-        except Exception as e:
-            print "Error in browser:",e.message
+        except:
+            print 'Browser error:',str(sys.exc_info()[1])
             if self.errorFunction is not None:
-                Clock.schedule_once(partial(self.errorFunction, e),0)
+                Clock.schedule_once(partial(self.errorFunction, str(sys.exc_info()[1])),1)
 
     def callUpdateFunction(self):
         if self.updateFunction is not None:
             Clock.schedule_once(self.updateFunction,0)
+
+    def callMaxUpdatesFunction(self, maxupdates):
+        if self.maxUpdatesFunction is not None:
+            Clock.schedule_once(partial(self.maxUpdatesFunction, maxupdates))
