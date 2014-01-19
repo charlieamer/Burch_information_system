@@ -31,7 +31,6 @@ class SISBrowser(BaseBrowser):
         self.browser.form['password'] = password
         self.browser.submit()
         self.browser.open("https://my.ibu.edu.ba/pages/home.php")
-        open("test.html","w").write(self.browser.response().read())
         if (self.browser.response().read().find('LOGOUT')>=0):
             cookiejar = deepcopy(self.cookies)
             Clock.schedule_once(self.resultFunction,0)
