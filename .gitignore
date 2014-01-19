@@ -7,6 +7,7 @@
 .metadata
 bin/
 tmp/
+data/loginInfo
 *.tmp
 *.bak
 *.swp
