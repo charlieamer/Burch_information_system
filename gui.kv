@@ -1,7 +1,7 @@
 #:kivy 1.8.0
 #:import kivy.graphics kivy.graphics
 #:import MainScreenManager common.MainScreenManager
-#:import LoginScreen login.LoginScreen
+#:import LoginScreen LoginScreen
 
 <LoginScreen>:
     AnchorLayout:
@@ -145,8 +145,69 @@
 
 <MainScreen>:
 	id: MainScreen
-	Button:
-		text: "it works yay"
-		on_touch_down:
-			MainScreenManager.switch_to(LoginScreen())
-			MainScreenManager.remove_widget(MainScreen)
+    BoxLayout:
+        orientation: 'vertical'
+        ###################################
+        ### Header
+        ###################################
+        BoxLayout:
+            orientation: 'horizontal'
+            height: 120
+            size_hint_y: None
+            BoxLayout:
+                #picture
+                width: 90
+                size_hint_x: None
+                canvas.before:
+                    Color:
+                        rgba: 0,0,0,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            GridLayout:
+                cols: 2
+                TRLabel:
+                    width: 125
+                    size_hint_x: None
+                    text: "Name/Surname: "
+                TLLabel:
+                    width: self.parent.width-125
+                    size_hint_x: None
+                    id: SISName
+                    text: "Downloading ..."
+                TRLabel:
+                    text: "ID: "
+                TLLabel:
+                    id: SISID
+                    text: "Downloading ..."
+                TRLabel:
+                    text: "Department: "
+                TLLabel:
+                    id: SISDepartment
+                    text: "Downloading ..."
+                TRLabel:
+                    text: "Email: "
+                TLLabel:
+                    id: SISEmail
+                    text: "Downloading ..."
+        BoxLayout:
+            orientation: 'horizontal'
+            height: 50
+            size_hint_y: None
+            ###################################
+            ### Buttons
+            ###################################
+            ProgressButton:
+                text: "Personal info"
+            ProgressButton:
+                text: "Messages"
+            ProgressButton:
+                text: "Courses"
+            ProgressButton:
+                text: "LMS"
+            ProgressButton:
+                text: "Logout"
+                on_touch_down: root.logout()
+        BoxLayout:
+            Button:
+            
